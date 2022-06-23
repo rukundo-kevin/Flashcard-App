@@ -1,0 +1,25 @@
+{
+  "name": "flashcard-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"We are not doing testing,\" && exit 1",
+    "dev": "ts-node-dev --transpile-only --no-notify --exit-child src/index.ts",
+    "generate": "ts-node --transpile-only src/schema.ts"
+  },
+  "author": "Rukundo Kevin",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.0.1",
+    "prisma": "^3.15.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.15.2",
+    "apollo-server": "^3.9.0",
+    "graphql": "^15.8.0",
+    "nexus": "^1.3.0"
+  }
+}
