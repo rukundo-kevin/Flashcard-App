@@ -4,7 +4,7 @@
  */
 
 
-
+import type { Context } from "./src/context"
 
 
 
@@ -28,7 +28,23 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  AuthPayload: { // root type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Flashcard: { // root type
+    answer: string; // String!
+    id: number; // Int!
+    question: string; // String!
+    title: string; // String!
+  }
+  Mutation: {};
   Query: {};
+  User: { // root type
+    email: string; // String!
+    id: number; // Int!
+    names: string; // String!
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -42,18 +58,78 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  AuthPayload: { // field return type
+    token: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Flashcard: { // field return type
+    answer: string; // String!
+    createdBy: NexusGenRootTypes['User'] | null; // User
+    id: number; // Int!
+    question: string; // String!
+    title: string; // String!
+  }
+  Mutation: { // field return type
+    create: NexusGenRootTypes['Flashcard']; // Flashcard!
+    login: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+    signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
+  }
   Query: { // field return type
-    ok: boolean; // Boolean!
+    users: NexusGenRootTypes['User'][]; // [User!]!
+  }
+  User: { // field return type
+    email: string; // String!
+    flashcards: NexusGenRootTypes['Flashcard'][]; // [Flashcard!]!
+    id: number; // Int!
+    names: string; // String!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  AuthPayload: { // field return type name
+    token: 'String'
+    user: 'User'
+  }
+  Flashcard: { // field return type name
+    answer: 'String'
+    createdBy: 'User'
+    id: 'Int'
+    question: 'String'
+    title: 'String'
+  }
+  Mutation: { // field return type name
+    create: 'Flashcard'
+    login: 'AuthPayload'
+    signup: 'AuthPayload'
+  }
   Query: { // field return type name
-    ok: 'Boolean'
+    users: 'User'
+  }
+  User: { // field return type name
+    email: 'String'
+    flashcards: 'Flashcard'
+    id: 'Int'
+    names: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    create: { // args
+      answer: string; // String!
+      question: string; // String!
+      title: string; // String!
+    }
+    login: { // args
+      email: string; // String!
+      password: string; // String!
+    }
+    signup: { // args
+      email: string; // String!
+      names: string; // String!
+      password: string; // String!
+    }
+  }
 }
 
 export interface NexusGenAbstractTypeMembers {
@@ -87,7 +163,7 @@ export type NexusGenFeaturesConfig = {
 }
 
 export interface NexusGenTypes {
-  context: any;
+  context: Context;
   inputTypes: NexusGenInputs;
   rootTypes: NexusGenRootTypes;
   inputTypeShapes: NexusGenInputs & NexusGenEnums & NexusGenScalars;

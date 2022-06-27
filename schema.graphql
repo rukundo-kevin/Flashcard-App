@@ -2,6 +2,32 @@
 ### Do not make changes to this file directly
 
 
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Flashcard {
+  answer: String!
+  createdBy: User
+  id: Int!
+  question: String!
+  title: String!
+}
+
+type Mutation {
+  create(answer: String!, question: String!, title: String!): Flashcard!
+  login(email: String!, password: String!): AuthPayload!
+  signup(email: String!, names: String!, password: String!): AuthPayload!
+}
+
 type Query {
-  ok: Boolean!
+  users: [User!]!
+}
+
+type User {
+  email: String!
+  flashcards: [Flashcard!]!
+  id: Int!
+  names: String!
 }

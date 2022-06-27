@@ -8,22 +8,21 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model User {
+model user {
   id Int @db.Integer @default(autoincrement()) @id
   email String @unique @db.VarChar(255)
   password String
-  role String @db.VarChar(255) @default("user") 
+  names String  @db.VarChar(255)
   createdAt DateTime @default(now())
-  flashCards FlashCard[]
+  flashCards flashcard[]
 }
 
-model FlashCard {
+model flashcard {
   id Int @db.Integer @default(autoincrement()) @id
   title String @unique @db.VarChar(255)
   question String @db.VarChar(500)
   answer String @db.VarChar(500)
   createdAt DateTime @default(now())
-  flashCardCreator User @relation(fields: [flashCardCreatorId], references: [id])
-  flashCardCreatorId Int
-  categoryId Int
+  createdBy user @relation(fields: [createdById], references: [id])
+  createdById Int
 }
