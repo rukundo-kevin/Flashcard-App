@@ -1,4 +1,4 @@
-name: deploy-hackernews-app-heroku                       
+name: deploy-flashcard-app-heroku                       
 
 on:
   push:
