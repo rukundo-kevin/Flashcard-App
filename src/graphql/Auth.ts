@@ -56,7 +56,12 @@ export const AuthMutation = extendType({
             async resolve(parent, args, context) {
                 const { email, names } = args;
                 const password = await bcrypt.hash(args.password, 10);
-
+                const userExists = await context.prisma.user.findUnique({
+                  where: { email: args.email },
+                });
+                if (userExists) {
+                  throw new Error("Email already registered");
+                }
                 const user = await context.prisma.user.create({
                     data: { email, password, names },
                 });

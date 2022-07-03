@@ -18,6 +18,18 @@ export const Flashcard = objectType({
        },
 });
 
+export const flashcardQuery = extendType({
+  type: "Query",
+  definition(t) {
+    t.nonNull.list.nonNull.field("flashcards", {
+      type: "Flashcard",
+      resolve(parent, args, context, info) {
+        return context.prisma.flashcard.findMany();
+      },
+    });
+  },
+});
+
 export const flashcardMutation = extendType({
     type: "Mutation",
     definition(t) {

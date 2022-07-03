@@ -75,6 +75,7 @@ export interface NexusGenFieldTypes {
     signup: NexusGenRootTypes['AuthPayload']; // AuthPayload!
   }
   Query: { // field return type
+    flashcards: NexusGenRootTypes['Flashcard'][]; // [Flashcard!]!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
@@ -103,6 +104,7 @@ export interface NexusGenFieldTypeNames {
     signup: 'AuthPayload'
   }
   Query: { // field return type name
+    flashcards: 'Flashcard'
     users: 'User'
   }
   User: { // field return type name
